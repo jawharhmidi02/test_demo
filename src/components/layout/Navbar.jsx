@@ -196,11 +196,36 @@ function Navbar() {
         </div>
 
         {error && (
-          <div className="py-2 px-3 my-2 text-xs bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-800/80 rounded-lg flex items-center justify-between">
-            <span>{error}</span>
-            <button onClick={clearError} className="font-bold text-red-500 hover:text-red-700 ml-2">
-              X
-            </button>
+          <div className="py-2 px-3 my-2 text-xs bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-800/80 rounded-lg flex-wrap flex items-center justify-between gap-2">
+            <div className="flex items-center space-x-2 flex-1 min-w-[200px]">
+              <span>{error}</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              {(error.includes('MetaMask') || error.includes('No Web3 wallet')) && (
+                <a
+                  href="https://metamask.io/download"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-3 py-1 bg-amber-500 hover:bg-amber-600  dark:hover:bg-amber-700 text-white text-xs font-semibold rounded-lg"
+                >
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg"
+                    alt="MetaMask Logo"
+                    className="w-4 h-4 mr-1.5"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                    }}
+                  />
+                  Install MetaMask
+                </a>
+              )}
+              <button
+                onClick={clearError}
+                className="font-bold text-red-500 hover:text-red-700 ml-2"
+              >
+                X
+              </button>
+            </div>
           </div>
         )}
 
