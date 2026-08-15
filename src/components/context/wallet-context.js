@@ -91,7 +91,7 @@ function normalizeAddress(address) {
 function getProvider() {
   if (typeof window === 'undefined' || !window.ethereum) return null;
 
-  return window.euthereum;
+  return window.ethereum;
 }
 
 function hasStoredDisconnect() {
