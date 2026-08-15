@@ -1,6 +1,14 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FiHome, FiMaximize2, FiCalendar, FiTrendingUp, FiUsers, FiDollarSign, FiGrid } from 'react-icons/fi';
+import {
+  FiHome,
+  FiMaximize2,
+  FiCalendar,
+  FiTrendingUp,
+  FiUsers,
+  FiDollarSign,
+  FiGrid,
+} from 'react-icons/fi';
 import { FacebookShareButton, TwitterShareButton, LinkedinShareButton } from 'react-share';
 import { FaFacebook, FaTwitter, FaLinkedin, FaEthereum, FaWallet } from 'react-icons/fa';
 
@@ -12,7 +20,7 @@ function PropertyDetail() {
     title: 'Modern Villa with Pool',
     price: {
       usd: 850000,
-      eth: 425
+      eth: 425,
     },
     location: 'Beverly Hills, CA',
     type: 'villa',
@@ -24,10 +32,11 @@ function PropertyDetail() {
       monthlyIncome: '$520',
       appreciation: '4.5%',
       rentalYield: '5.8%',
-      totalReturn: '10.3%'
+      totalReturn: '10.3%',
     },
     status: 'Active Investment',
-    description: 'This stunning modern villa offers luxurious living spaces with high-end finishes throughout. The property has been tokenized for fractional ownership, allowing investors to participate in this premium real estate opportunity with as little as $10.',
+    description:
+      'This stunning modern villa offers luxurious living spaces with high-end finishes throughout. The property has been tokenized for fractional ownership, allowing investors to participate in this premium real estate opportunity with as little as $10.',
     features: [
       'Swimming Pool',
       'Smart Home System',
@@ -36,7 +45,7 @@ function PropertyDetail() {
       'Wine Cellar',
       'Outdoor Kitchen',
       'Fire Pit',
-      'Three-Car Garage'
+      'Three-Car Garage',
     ],
     tokenDetails: {
       totalTokens: 85000,
@@ -44,7 +53,7 @@ function PropertyDetail() {
       tokenPrice: '$10',
       tokenSymbol: 'VILLA425',
       contractAddress: '0x1234...5678',
-      blockchain: 'Ethereum'
+      blockchain: 'Ethereum',
     },
     financials: {
       grossRent: '$8,500/month',
@@ -53,9 +62,9 @@ function PropertyDetail() {
         management: '8%',
         maintenance: '5%',
         insurance: '2%',
-        property_tax: '1.2%'
+        property_tax: '1.2%',
       },
-      projectedAppreciation: '4.5% annually'
+      projectedAppreciation: '4.5% annually',
     },
     yearBuilt: 2020,
     parkingSpaces: 3,
@@ -63,27 +72,37 @@ function PropertyDetail() {
     images: [
       'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80',
       'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80',
-      'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80'
+      'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80',
     ],
     agent: {
       name: 'John Doe',
       phone: '+1 (555) 123-4567',
       email: 'john@realestate.com',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80'
-    }
+      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80',
+    },
   };
 
   const shareUrl = window.location.href;
 
   return (
-    <div className="min-h-screen bg-secondary-50">
+    <div className="min-h-screen bg-secondary-50 dark:bg-secondary-950">
       {/* Navigation */}
-      <div className="bg-white shadow">
+      <div className="bg-white dark:bg-secondary-900 border-b dark:border-secondary-800 shadow">
         <div className="container py-4">
           <div className="flex items-center space-x-2 text-sm">
-            <Link to="/" className="text-secondary-600 hover:text-primary-600">Home</Link>
+            <Link
+              to="/"
+              className="text-secondary-600 dark:text-secondary-400 hover:text-primary-600"
+            >
+              Home
+            </Link>
             <span className="text-secondary-400">/</span>
-            <Link to="/properties" className="text-secondary-600 hover:text-primary-600">Properties</Link>
+            <Link
+              to="/properties"
+              className="text-secondary-600 dark:text-secondary-400 hover:text-primary-600"
+            >
+              Properties
+            </Link>
             <span className="text-secondary-400">/</span>
             <span className="text-primary-600">{property.title}</span>
           </div>
@@ -126,11 +145,13 @@ function PropertyDetail() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="bg-white rounded-lg shadow-md p-6"
+              className="bg-white dark:bg-secondary-900 border dark:border-secondary-800 rounded-lg shadow-md p-6"
             >
               <h2 className="text-2xl font-bold mb-4">Property Details</h2>
-              <p className="text-secondary-600 mb-6">{property.description}</p>
-              
+              <p className="text-secondary-600 dark:text-secondary-400 mb-6">
+                {property.description}
+              </p>
+
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                 <div className="flex items-center space-x-2">
                   {/* <FiBed className="text-primary-600" /> */}
@@ -162,26 +183,40 @@ function PropertyDetail() {
 
               {/* Token Details */}
               <h3 className="text-xl font-semibold mb-4">Token Information</h3>
-              <div className="bg-secondary-50 rounded-lg p-6 mb-6">
+              <div className="bg-secondary-50 dark:bg-secondary-950 rounded-lg p-6 mb-6">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-sm text-secondary-600">Token Symbol</p>
+                    <p className="text-sm text-secondary-600 dark:text-secondary-400">
+                      Token Symbol
+                    </p>
                     <p className="font-semibold">{property.tokenDetails.tokenSymbol}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-secondary-600">Token Price</p>
+                    <p className="text-sm text-secondary-600 dark:text-secondary-400">
+                      Token Price
+                    </p>
                     <p className="font-semibold">{property.tokenDetails.tokenPrice}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-secondary-600">Available Tokens</p>
-                    <p className="font-semibold">{property.tokenDetails.availableTokens.toLocaleString()}</p>
+                    <p className="text-sm text-secondary-600 dark:text-secondary-400">
+                      Available Tokens
+                    </p>
+                    <p className="font-semibold">
+                      {property.tokenDetails.availableTokens.toLocaleString()}
+                    </p>
                   </div>
                   <div>
-                    <p className="text-sm text-secondary-600">Total Supply</p>
-                    <p className="font-semibold">{property.tokenDetails.totalTokens.toLocaleString()}</p>
+                    <p className="text-sm text-secondary-600 dark:text-secondary-400">
+                      Total Supply
+                    </p>
+                    <p className="font-semibold">
+                      {property.tokenDetails.totalTokens.toLocaleString()}
+                    </p>
                   </div>
                   <div className="col-span-2">
-                    <p className="text-sm text-secondary-600">Smart Contract</p>
+                    <p className="text-sm text-secondary-600 dark:text-secondary-400">
+                      Smart Contract
+                    </p>
                     <p className="font-mono text-sm">{property.tokenDetails.contractAddress}</p>
                   </div>
                 </div>
@@ -190,25 +225,27 @@ function PropertyDetail() {
               {/* Financial Details */}
               <h3 className="text-xl font-semibold mb-4">Financial Overview</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-secondary-50 rounded-lg p-6">
+                <div className="bg-secondary-50 dark:bg-secondary-950 rounded-lg p-6">
                   <h4 className="font-semibold mb-4">Rental Income</h4>
                   <div className="space-y-2">
                     <div className="flex justify-between">
-                      <span className="text-secondary-600">Gross Rent</span>
+                      <span className="text-secondary-600 dark:text-secondary-400">Gross Rent</span>
                       <span className="font-medium">{property.financials.grossRent}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-secondary-600">Net Rent</span>
+                      <span className="text-secondary-600 dark:text-secondary-400">Net Rent</span>
                       <span className="font-medium">{property.financials.netRent}</span>
                     </div>
                   </div>
                 </div>
-                <div className="bg-secondary-50 rounded-lg p-6">
+                <div className="bg-secondary-50 dark:bg-secondary-950 rounded-lg p-6">
                   <h4 className="font-semibold mb-4">Expenses</h4>
                   <div className="space-y-2">
                     {Object.entries(property.financials.expenses).map(([key, value]) => (
                       <div key={key} className="flex justify-between">
-                        <span className="text-secondary-600">{key.replace('_', ' ').charAt(0).toUpperCase() + key.slice(1)}</span>
+                        <span className="text-secondary-600 dark:text-secondary-400">
+                          {key.replace('_', ' ').charAt(0).toUpperCase() + key.slice(1)}
+                        </span>
                         <span className="font-medium">{value}</span>
                       </div>
                     ))}
@@ -226,13 +263,15 @@ function PropertyDetail() {
             className="space-y-6"
           >
             {/* Investment Card */}
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="bg-white dark:bg-secondary-900 border dark:border-secondary-800 rounded-lg shadow-md p-6">
               <div className="flex justify-between items-center mb-4">
                 <div>
                   <p className="text-sm text-secondary-500">Investment Price</p>
                   <div className="flex items-center">
                     <FiDollarSign className="text-primary-600" />
-                    <span className="text-2xl font-bold">${property.price.usd.toLocaleString()}</span>
+                    <span className="text-2xl font-bold">
+                      ${property.price.usd.toLocaleString()}
+                    </span>
                   </div>
                   <div className="flex items-center text-primary-600">
                     <FaEthereum className="mr-1" />
@@ -251,15 +290,15 @@ function PropertyDetail() {
               {/* Investment Metrics */}
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between">
-                  <span className="text-secondary-600">Rental Yield</span>
+                  <span className="text-secondary-600 dark:text-secondary-400">Rental Yield</span>
                   <span className="font-medium">{property.metrics.rentalYield}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-secondary-600">Appreciation</span>
+                  <span className="text-secondary-600 dark:text-secondary-400">Appreciation</span>
                   <span className="font-medium">{property.metrics.appreciation}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-secondary-600">Total Return</span>
+                  <span className="text-secondary-600 dark:text-secondary-400">Total Return</span>
                   <span className="font-medium text-green-600">{property.metrics.totalReturn}</span>
                 </div>
               </div>
@@ -267,7 +306,9 @@ function PropertyDetail() {
               {/* Funding Progress */}
               <div className="mb-6">
                 <div className="flex justify-between text-sm mb-1">
-                  <span className="text-secondary-600">Funding Progress</span>
+                  <span className="text-secondary-600 dark:text-secondary-400">
+                    Funding Progress
+                  </span>
                   <span className="font-medium">{property.metrics.funded}</span>
                 </div>
                 <div className="w-full bg-secondary-100 rounded-full h-2">
@@ -280,10 +321,11 @@ function PropertyDetail() {
                   Min Investment: {property.metrics.minInvestment}
                 </p>
               </div>
-              
+
               <Link
                 to={`/property-3d`}
-                className="btn w-full mb-4 flex items-center justify-center">
+                className="btn w-full mb-4 flex items-center justify-center"
+              >
                 <FiGrid className="mr-2" />
                 View 3D version
               </Link>
@@ -292,7 +334,7 @@ function PropertyDetail() {
                 <FaWallet className="mr-2" />
                 Connect Wallet to Invest
               </button>
-              
+
               <div className="flex items-center justify-center space-x-4 pt-4 border-t">
                 <FacebookShareButton url={shareUrl}>
                   <FaFacebook className="text-2xl text-blue-600 hover:opacity-80" />
@@ -307,7 +349,7 @@ function PropertyDetail() {
             </div>
 
             {/* Agent Card */}
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="bg-white dark:bg-secondary-900 border dark:border-secondary-800 rounded-lg shadow-md p-6">
               <div className="flex items-center space-x-4 mb-4">
                 <img
                   src={property.agent.image}
@@ -316,7 +358,9 @@ function PropertyDetail() {
                 />
                 <div>
                   <h3 className="font-semibold">{property.agent.name}</h3>
-                  <p className="text-sm text-secondary-600">Investment Advisor</p>
+                  <p className="text-sm text-secondary-600 dark:text-secondary-400">
+                    Investment Advisor
+                  </p>
                 </div>
               </div>
               <div className="space-y-2">
@@ -327,9 +371,7 @@ function PropertyDetail() {
                   <span className="font-medium">Email:</span> {property.agent.email}
                 </p>
               </div>
-              <button className="btn-secondary w-full mt-4">
-                Schedule Consultation
-              </button>
+              <button className="btn-secondary w-full mt-4">Schedule Consultation</button>
             </div>
           </motion.div>
         </div>

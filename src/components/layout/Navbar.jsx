@@ -84,7 +84,7 @@ function Navbar() {
               {theme === 'light' ? (
                 <FiMoon size={24} className="text-secondary-600 hover:text-primary-600" />
               ) : (
-                <FiSun size={24} className="text-secondary-600 hover:text-primary-600" />
+                <FiSun size={24} className="text-amber-500 " />
               )}
             </button>
 
@@ -179,7 +179,11 @@ function Navbar() {
               onClick={toggleTheme}
               className="p-2 rounded-lg text-secondary-600 dark:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-800 focus:outline-none"
             >
-              {theme === 'light' ? <FiMoon size={24} /> : <FiSun size={24} />}
+              {theme === 'light' ? (
+                <FiMoon size={24} />
+              ) : (
+                <FiSun size={24} className="text-amber-500" />
+              )}
             </button>
             <button
               type="button"
