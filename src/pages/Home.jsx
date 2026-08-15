@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiArrowRight, FiUser, FiClock } from 'react-icons/fi';
 import {
   FaWallet,
   FaStore,
@@ -12,11 +11,22 @@ import {
   FaUserCog,
   FaCoins,
 } from 'react-icons/fa';
+import {
+  FiChevronDown,
+  FiChevronUp,
+  FiArrowRight,
+  FiUser,
+  FiClock,
+  FiCheckCircle,
+} from 'react-icons/fi';
 import { SiEthereum } from 'react-icons/si';
-import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
+
+import { useWallet } from '../components/context';
 
 function Home() {
   const [openSections, setOpenSections] = useState({});
+
+  const { isConnected, isConnecting, connectWallet, shortAddress, balance } = useWallet();
 
   const featuredProperties = [
     {
@@ -266,6 +276,30 @@ function Home() {
             Own fractional shares of premium properties through NFTs. Start investing with as little
             as $10.
           </motion.p>
+
+          <motion.div
+            className="flex justify-center space-x-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            {isConnected ? (
+              <div className="inline-flex items-center px-5 py-3 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs fond-medium backdrop-blur-sm">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse mr-2" />
+                <span>Wallet Connected: {shortAddress}</span>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={connectWallet}
+                disabled={isConnecting}
+                className="inline-flex items-center px-6 py-3 border border-white/30 text-base font-medium rounded-md text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                <FaWallet className="mr-2" />
+                {isConnecting ? 'Connecting...' : 'Connect Wallet'}
+              </button>
+            )}
+          </motion.div>
         </div>
       </section>
       {/* Investment Steps */}
@@ -449,10 +483,24 @@ function Home() {
             <Link to="/properties" className="btn bg-white text-primary-600 hover:bg-primary-50">
               Browse Properties
             </Link>
-            <button className="btn bg-primary-700 hover:bg-primary-800">
-              <FaWallet className="mr-2" />
-              Connect Wallet
-            </button>
+            {isConnected ? (
+              <div className="inline-flex items-center px-6 py-3 rounded-md bg-white/20 text-white border border-white/30 text-sm font-semibold backdrop-blur-sm">
+                <FiCheckCircle className="mr-2 text-emerald-400 text-lg" />
+                <span>
+                  Connect: {shortAddress} ({balance || '0.0000'} ETH)
+                </span>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={connectWallet}
+                disabled={isConnecting}
+                className="btn bg-secondary-900/90 hover:bg-black text-white px-6 py-3 font-semibold  disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                <FaWallet className="mr-2" />
+                {isConnecting ? 'Connecting...' : 'Connect Wallet'}
+              </button>
+            )}
           </div>
         </div>
       </section>
@@ -522,7 +570,10 @@ function Home() {
           </div>
           <div className="space-y-8">
             {faqSections.map((section, sectionIndex) => (
-              <div key={sectionIndex} className="bg-white dark:bg-secondary-900 border dark:border-secondary-800 rounded-lg shadow-md overflow-hidden">
+              <div
+                key={sectionIndex}
+                className="bg-white dark:bg-secondary-900 border dark:border-secondary-800 rounded-lg shadow-md overflow-hidden"
+              >
                 <div className="divide-y divide-secondary-100 dark:divide-secondary-800">
                   {section.questions.map((item, questionIndex) => (
                     <div key={questionIndex} className="p-6">
