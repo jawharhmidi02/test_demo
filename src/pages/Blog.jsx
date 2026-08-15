@@ -13,7 +13,7 @@ function Blog() {
     { id: 'investment', name: 'Investment' },
     { id: 'property', name: 'Property' },
     { id: 'technology', name: 'Technology' },
-    { id: 'market', name: 'Market Analysis' }
+    { id: 'market', name: 'Market Analysis' },
   ];
 
   const posts = [
@@ -21,23 +21,25 @@ function Blog() {
       id: 1,
       title: 'The Future of Real Estate: Cryptocurrency Payments and Blockchain Technology',
       slug: 'future-real-estate-crypto-payments',
-      excerpt: 'Explore how cryptocurrency and blockchain are revolutionizing property transactions and investment opportunities.',
+      excerpt:
+        'Explore how cryptocurrency and blockchain are revolutionizing property transactions and investment opportunities.',
       image: 'https://images.unsplash.com/photo-1516245834210-c4c142787335?w=800&q=80',
       category: 'crypto',
       author: 'Sarah Johnson',
       date: '2024-03-15',
-      readTime: '5 min read'
+      readTime: '5 min read',
     },
     {
       id: 2,
       title: 'Understanding Tokenized Real Estate Investment',
       slug: 'understanding-tokenized-real-estate',
-      excerpt: "A comprehensive guide to property tokenization and how it's making real estate investment more accessible.",
+      excerpt:
+        "A comprehensive guide to property tokenization and how it's making real estate investment more accessible.",
       image: 'https://images.unsplash.com/photo-1460472178825-e5240623afd5?w=800&q=80',
       category: 'investment',
       author: 'Michael Chen',
       date: '2024-03-12',
-      readTime: '7 min read'
+      readTime: '7 min read',
     },
     {
       id: 3,
@@ -48,7 +50,7 @@ function Blog() {
       category: 'technology',
       author: 'David Rodriguez',
       date: '2024-03-10',
-      readTime: '6 min read'
+      readTime: '6 min read',
     },
     {
       id: 4,
@@ -59,7 +61,7 @@ function Blog() {
       category: 'market',
       author: 'Emma Wilson',
       date: '2024-03-08',
-      readTime: '8 min read'
+      readTime: '8 min read',
     },
     {
       id: 5,
@@ -70,30 +72,32 @@ function Blog() {
       category: 'investment',
       author: 'Sarah Johnson',
       date: '2024-03-05',
-      readTime: '6 min read'
+      readTime: '6 min read',
     },
     {
       id: 6,
       title: 'Regulatory Landscape: Crypto in Real Estate',
       slug: 'regulatory-landscape-crypto-real-estate',
-      excerpt: 'Understanding the current regulatory environment for cryptocurrency-based property transactions.',
+      excerpt:
+        'Understanding the current regulatory environment for cryptocurrency-based property transactions.',
       image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80',
       category: 'crypto',
       author: 'Michael Chen',
       date: '2024-03-02',
-      readTime: '7 min read'
-    }
+      readTime: '7 min read',
+    },
   ];
 
-  const filteredPosts = posts.filter(post => {
-    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
+  const filteredPosts = posts.filter((post) => {
+    const matchesSearch =
+      post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || post.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
   return (
-    <div className="min-h-screen bg-secondary-50 py-16">
+    <div className="min-h-screen bg-secondary-50 dark:bg-secondary-950 py-16">
       <div className="container">
         {/* Header */}
         <motion.div
@@ -102,14 +106,15 @@ function Blog() {
           className="text-center max-w-3xl mx-auto mb-12"
         >
           <h1 className="text-4xl font-bold mb-4">Real Estate & Crypto Insights</h1>
-          <p className="text-secondary-600">
-            Stay updated with the latest trends in real estate investment, cryptocurrency, and blockchain technology.
+          <p className="text-secondary-600 dark:text-secondary-400">
+            Stay updated with the latest trends in real estate investment, cryptocurrency, and
+            blockchain technology.
           </p>
         </motion.div>
 
         {/* Search and Filter */}
         <div className="max-w-4xl mx-auto mb-12">
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="bg-white dark:bg-secondary-900 rounded-lg shadow-md p-6">
             <div className="flex flex-col md:flex-row gap-4">
               <div className="flex-1">
                 <div className="relative">
@@ -129,7 +134,7 @@ function Blog() {
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
                 >
-                  {categories.map(category => (
+                  {categories.map((category) => (
                     <option key={category.id} value={category.id}>
                       {category.name}
                     </option>
@@ -149,26 +154,20 @@ function Blog() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white rounded-lg shadow-md overflow-hidden"
+              className="bg-white dark:bg-secondary-900 border dark:border-secondary-800 rounded-lg shadow-md overflow-hidden"
             >
               <Link to={`/blog/${post.slug}`}>
                 <div className="relative h-48">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute top-4 right-4 bg-white px-3 py-1 rounded-full text-sm font-medium text-primary-600">
-                    {categories.find(c => c.id === post.category)?.name}
+                  <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+                  <div className="absolute top-4 right-4 bg-white dark:bg-secondary-900 px-3 py-1 rounded-full text-sm font-medium text-primary-600">
+                    {categories.find((c) => c.id === post.category)?.name}
                   </div>
                 </div>
                 <div className="p-6">
                   <h2 className="text-xl font-semibold mb-3 hover:text-primary-600 transition-colors">
                     {post.title}
                   </h2>
-                  <p className="text-secondary-600 mb-4">
-                    {post.excerpt}
-                  </p>
+                  <p className="text-secondary-600 dark:text-secondary-400 mb-4">{post.excerpt}</p>
                   <div className="flex items-center text-sm text-secondary-500">
                     <FiUser className="mr-2" />
                     <span className="mr-4">{post.author}</span>

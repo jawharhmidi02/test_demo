@@ -7,12 +7,12 @@ import {
   RandomizedLight,
   Sphere,
   useGLTF,
-} from "@react-three/drei";
+} from '@react-three/drei';
 
-import * as THREE from "three";
+import * as THREE from 'three';
 
-import React, { useEffect } from "react";
-import { DEG2RAD } from "three/src/math/MathUtils";
+import React, { useEffect } from 'react';
+import { DEG2RAD } from 'three/src/math/MathUtils';
 
 export const Scene = ({ mainColor, path, ...props }) => {
   const { scene } = useGLTF(path);
@@ -27,7 +27,7 @@ export const Scene = ({ mainColor, path, ...props }) => {
   const ratioScale = Math.min(1.2, Math.max(0.5, window.innerWidth / 1920));
   return (
     <>
-      <color attach="background" args={["#ffffff"]} />
+      <color attach="background" args={['#ffffff']} />
       <group {...props} dispose={null}>
         <PerspectiveCamera makeDefault position={[3, 3, 18]} near={0.5} />
         <OrbitControls
@@ -63,7 +63,7 @@ export const Scene = ({ mainColor, path, ...props }) => {
             bias={0.001}
           />
         </AccumulativeShadows>
-        <Environment file={"./spree_bank_1k.hdr"} blur={0.8} background>
+        <Environment file={'./spree_bank_1k.hdr'} blur={0.8} background>
           <Sphere scale={15}>
             <meshBasicMaterial color={mainColor} side={THREE.BackSide} />
           </Sphere>
@@ -107,6 +107,6 @@ export const Scene = ({ mainColor, path, ...props }) => {
   );
 };
 
-useGLTF.preload("/models/house1.glb");
-useGLTF.preload("/models/house2c.glb");
-useGLTF.preload("/models/house3c.glb");
+useGLTF.preload('/models/house1.glb');
+useGLTF.preload('/models/house2c.glb');
+useGLTF.preload('/models/house3c.glb');

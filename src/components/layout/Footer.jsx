@@ -11,7 +11,8 @@ function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">RentVerse</h3>
             <p className="text-secondary-300 text-sm">
-              Your trusted partner in finding the perfect property. We make real estate simple and accessible for everyone.
+              Your trusted partner in finding the perfect property. We make real estate simple and
+              accessible for everyone.
             </p>
           </div>
 

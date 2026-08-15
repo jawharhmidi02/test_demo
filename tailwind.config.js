@@ -1,23 +1,22 @@
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,jsx}"
-  ],
+  darkMode: 'class',
+  content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
     extend: {
       colors: {
-        "primary": {
-          '50': '#edf9ff',
-          '100': '#d6f0ff',
-          '200': '#b5e7ff',
-          '300': '#83d9ff',
-          '400': '#48c2ff',
-          '500': '#1ea1ff',
-          '600': '#0682ff',
-          '700': '#006eff',
-          '800': '#0854c5',
-          '900': '#0d4a9b',
-          '950': '#0e2d5d',
+        primary: {
+          50: '#edf9ff',
+          100: '#d6f0ff',
+          200: '#b5e7ff',
+          300: '#83d9ff',
+          400: '#48c2ff',
+          500: '#1ea1ff',
+          600: '#0682ff',
+          700: '#006eff',
+          800: '#0854c5',
+          900: '#0d4a9b',
+          950: '#0e2d5d',
         },
         secondary: {
           50: '#f8fafc',
@@ -30,6 +29,7 @@ export default {
           700: '#334155',
           800: '#1e293b',
           900: '#0f172a',
+          950: '#0b1120',
         },
       },
       fontFamily: {
@@ -38,4 +38,4 @@ export default {
     },
   },
   plugins: [],
-}
+};

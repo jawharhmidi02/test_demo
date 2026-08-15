@@ -1,24 +1,21 @@
-import {
-  CameraControls,
-  Environment,
-  RenderTexture,
-} from "@react-three/drei";
-import { useThree } from "@react-three/fiber";
-import { useAtom } from "jotai";
-import { useControls } from "leva";
-import { useEffect, useRef } from "react";
-import { slideAtom } from "./Overlay";
-import { Scene } from "./Scene";
+import { CameraControls, Environment, RenderTexture } from '@react-three/drei';
+import { useThree } from '@react-three/fiber';
+import { useAtom } from 'jotai';
+import { useControls } from 'leva';
+import { useEffect, useRef } from 'react';
+import { slideAtom } from './Overlay';
+import { Scene } from './Scene';
 
 export const scenes = [
   {
-    path: "models/house1.glb",
-    mainColor: "#c0ffe1",
-    name: "Modern Villa with Pool",
-    description: "A modern urban house with sleek design and efficient use of space, perfect for city living.",
+    path: 'models/house1.glb',
+    mainColor: '#c0ffe1',
+    name: 'Modern Villa with Pool',
+    description:
+      'A modern urban house with sleek design and efficient use of space, perfect for city living.',
     targetProfitability: 10.3,
     roi: 7.2,
-    valuation: "425 ETH"
+    valuation: '425 ETH',
   },
 ];
 
@@ -70,13 +67,10 @@ export const Experience = () => {
   return (
     <>
       <ambientLight intensity={0.2} />
-      <Environment  preset="sunset"/>
+      <Environment preset="sunset" />
       <CameraHandler slideDistance={slideDistance} />
       {scenes.map((scene, index) => (
-        <mesh
-          key={index}
-          position={[index * (viewport.width + slideDistance), 0, 0]}
-        >
+        <mesh key={index} position={[index * (viewport.width + slideDistance), 0, 0]}>
           <planeGeometry args={[viewport.width, viewport.height]} />
           <meshBasicMaterial toneMapped={false}>
             <RenderTexture attach="map">

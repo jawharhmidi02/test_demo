@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FiMenu, FiX } from 'react-icons/fi';
+import { FiMenu, FiX, FiMoon, FiSun } from 'react-icons/fi';
+// import { CiDark, CiLight } from 'react-icons/ci';
+import { useTheme } from '../context';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   const navigation = [
     { name: 'Home', href: '/' },
@@ -14,15 +17,15 @@ function Navbar() {
   ];
 
   return (
-    <nav className="bg-white shadow-sm">
+    <nav className="shadow-sm bg-white dark:bg-secondary-900/80 border-b dark:border-secondary-800">
       <div className="container">
         <div className="flex justify-between h-16">
           <div className="flex">
             <Link to="/" className="flex items-center">
               <svg width="30" height="35" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="15" cy="20" r="10" stroke="#0682ff"/>
-                  <circle cx="15" cy="20" r="6" stroke="#0682ff" strokeWidth="3"/>
-              </svg>  
+                <circle cx="15" cy="20" r="10" stroke="#0682ff" />
+                <circle cx="15" cy="20" r="6" stroke="#0682ff" strokeWidth="3" />
+              </svg>
               <span className="text-2xl font-bold text-primary-600 mt-1.5">RentVerse</span>
             </Link>
           </div>
@@ -33,16 +36,21 @@ function Navbar() {
               <Link
                 key={item.name}
                 to={item.href}
-                className="text-secondary-600 hover:text-primary-600 px-3 py-2 text-sm font-medium"
+                className="text-secondary-600 dark:text-secondary-300 hover:text-primary-600 px-3 py-2 text-sm font-medium"
               >
                 {item.name}
               </Link>
             ))}
-            <button
-              className="btn"
-            >
-              Connect
+
+            <button type="button" onClick={toggleTheme}>
+              {theme === 'light' ? (
+                <FiMoon size={24} className="text-secondary-600 hover:text-primary-600" />
+              ) : (
+                <FiSun size={24} className="text-secondary-600 hover:text-primary-600" />
+              )}
             </button>
+
+            <button className="btn">Connect</button>
           </div>
 
           {/* Mobile menu button */}

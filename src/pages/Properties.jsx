@@ -13,7 +13,7 @@ function Properties() {
     minROI: '',
     maxROI: '',
     fundingStatus: 'all',
-    sortBy: 'newest'
+    sortBy: 'newest',
   });
 
   const properties = [
@@ -22,7 +22,7 @@ function Properties() {
       title: 'Modern Villa with Pool',
       price: {
         usd: 850000,
-        eth: 425
+        eth: 425,
       },
       location: 'Beverly Hills, CA',
       image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80',
@@ -33,22 +33,22 @@ function Properties() {
         funded: '89%',
         minInvestment: '$10',
         monthlyIncome: '$520',
-        appreciation: '4.5%'
+        appreciation: '4.5%',
       },
       status: 'Active Investment',
       features: ['Pool', 'Smart Home', 'Solar Panels'],
       tokenDetails: {
         totalTokens: 85000,
         availableTokens: 9350,
-        tokenPrice: '$10'
-      }
+        tokenPrice: '$10',
+      },
     },
     {
       id: 2,
       title: 'Luxury Penthouse',
       price: {
         usd: 1200000,
-        eth: 600
+        eth: 600,
       },
       location: 'Manhattan, NY',
       image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80',
@@ -59,22 +59,22 @@ function Properties() {
         funded: '95%',
         minInvestment: '$10',
         monthlyIncome: '$680',
-        appreciation: '5.2%'
+        appreciation: '5.2%',
       },
       status: 'Almost Funded',
       features: ['Doorman', 'Gym', 'Terrace'],
       tokenDetails: {
         totalTokens: 120000,
         availableTokens: 6000,
-        tokenPrice: '$10'
-      }
+        tokenPrice: '$10',
+      },
     },
     {
       id: 3,
       title: 'Waterfront Estate',
       price: {
         usd: 2100000,
-        eth: 1050
+        eth: 1050,
       },
       location: 'Miami Beach, FL',
       image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80',
@@ -85,28 +85,32 @@ function Properties() {
         funded: '45%',
         minInvestment: '$10',
         monthlyIncome: '$1200',
-        appreciation: '6.1%'
+        appreciation: '6.1%',
       },
       status: 'New Listing',
       features: ['Waterfront', 'Dock', 'Wine Cellar'],
       tokenDetails: {
         totalTokens: 210000,
         availableTokens: 115500,
-        tokenPrice: '$10'
-      }
-    }
+        tokenPrice: '$10',
+      },
+    },
   ];
 
   const handleFilterChange = (key, value) => {
-    setFilters(prev => ({ ...prev, [key]: value }));
+    setFilters((prev) => ({ ...prev, [key]: value }));
   };
 
-  const filteredProperties = properties.filter(property => {
+  const filteredProperties = properties.filter((property) => {
     if (filters.propertyType !== 'all' && property.type !== filters.propertyType) return false;
-    if (filters.location && !property.location.toLowerCase().includes(filters.location.toLowerCase())) return false;
+    if (
+      filters.location &&
+      !property.location.toLowerCase().includes(filters.location.toLowerCase())
+    )
+      return false;
     if (filters.minROI && parseFloat(property.roi) < parseFloat(filters.minROI)) return false;
     if (filters.maxROI && parseFloat(property.roi) > parseFloat(filters.maxROI)) return false;
-    
+
     if (filters.priceRange !== 'all') {
       const [min, max] = filters.priceRange.split('-').map(Number);
       if (max && (property.price.usd < min || property.price.usd > max)) return false;
@@ -126,10 +130,10 @@ function Properties() {
           if (fundedPercentage < 90) return false;
           break;
         default:
-          break
+          break;
       }
     }
-    
+
     return true;
   });
 
@@ -150,9 +154,9 @@ function Properties() {
   });
 
   return (
-    <div className="min-h-screen bg-secondary-50">
+    <div className="min-h-screen dark:bg-secondary-950">
       {/* Header */}
-      <div className="bg-white shadow">
+      <div className="bg-white dark:bg-secondary-900 border-b dark:border-secondary-800 shadow">
         <div className="container py-6">
           <div className="flex justify-between items-center">
             <h1 className="text-3xl font-bold">Investment Properties</h1>
@@ -170,11 +174,11 @@ function Properties() {
 
       {/* Filters */}
       {showFilters && (
-        <div className="bg-white shadow-md border-t">
+        <div className="bg-white dark:bg-secondary-900/90 dark:border-secondary-800 shadow-md border-b">
           <div className="container py-6">
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
               <div>
-                <label className="block text-sm font-medium text-secondary-700 mb-1">
+                <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-1">
                   Price Range
                 </label>
                 <select
@@ -190,7 +194,7 @@ function Properties() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-secondary-700 mb-1">
+                <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-1">
                   Property Type
                 </label>
                 <select
@@ -206,7 +210,7 @@ function Properties() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-secondary-700 mb-1">
+                <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-1">
                   Location
                 </label>
                 <input
@@ -219,7 +223,7 @@ function Properties() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-secondary-700 mb-1">
+                <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-1">
                   Minimum ROI
                 </label>
                 <input
@@ -232,7 +236,7 @@ function Properties() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-secondary-700 mb-1">
+                <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-1">
                   Funding Status
                 </label>
                 <select
@@ -248,7 +252,7 @@ function Properties() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-secondary-700 mb-1">
+                <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-1">
                   Sort By
                 </label>
                 <select
@@ -274,7 +278,7 @@ function Properties() {
           {sortedProperties.map((property, index) => (
             <motion.div
               key={property.id}
-              className="bg-white rounded-lg shadow-md overflow-hidden"
+              className="bg-white dark:bg-secondary-900 border dark:border-secondary-800 rounded-lg shadow-md overflow-hidden"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
@@ -286,13 +290,15 @@ function Properties() {
                     alt={property.title}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute top-4 right-4 bg-white px-3 py-1 rounded-full text-primary-600 font-semibold">
+                  <div className="absolute top-4 right-4 bg-white dark:bg-secondary-800/90 border dark:border-secondary-700 px-3 py-1 rounded-full text-primary-600 font-semibold">
                     {property.status}
                   </div>
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-2">{property.title}</h3>
-                  <p className="text-secondary-600 mb-4">{property.location}</p>
+                  <p className="text-secondary-600 dark:text-secondary-400 mb-4">
+                    {property.location}
+                  </p>
 
                   {/* Price and ROI */}
                   <div className="flex justify-between items-center mb-4">
@@ -300,7 +306,9 @@ function Properties() {
                       <p className="text-sm text-secondary-500">Investment Price</p>
                       <div className="flex items-center">
                         <FiDollarSign className="text-primary-600" />
-                        <span className="font-semibold">${property.price.usd.toLocaleString()}</span>
+                        <span className="font-semibold">
+                          ${property.price.usd.toLocaleString()}
+                        </span>
                       </div>
                       <div className="flex items-center text-sm text-primary-600">
                         <FaEthereum className="mr-1" />
@@ -319,15 +327,21 @@ function Properties() {
                   {/* Investment Metrics */}
                   <div className="space-y-2 mb-4">
                     <div className="flex justify-between text-sm">
-                      <span className="text-secondary-600">Monthly Income</span>
+                      <span className="text-secondary-600 dark:text-secondary-400">
+                        Monthly Income
+                      </span>
                       <span className="font-medium">{property.metrics.monthlyIncome}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-secondary-600">Appreciation</span>
+                      <span className="text-secondary-600 dark:text-secondary-400">
+                        Appreciation
+                      </span>
                       <span className="font-medium">{property.metrics.appreciation}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-secondary-600">Min Investment</span>
+                      <span className="text-secondary-600 dark:text-secondary-400">
+                        Min Investment
+                      </span>
                       <span className="font-medium">{property.metrics.minInvestment}</span>
                     </div>
                   </div>
@@ -335,7 +349,9 @@ function Properties() {
                   {/* Funding Progress */}
                   <div className="mb-4">
                     <div className="flex justify-between text-sm mb-1">
-                      <span className="text-secondary-600">Funding Progress</span>
+                      <span className="text-secondary-600 dark:text-secondary-400">
+                        Funding Progress
+                      </span>
                       <span className="font-medium">{property.metrics.funded}</span>
                     </div>
                     <div className="w-full bg-secondary-100 rounded-full h-2">
@@ -347,15 +363,20 @@ function Properties() {
                   </div>
 
                   {/* Token Details */}
-                  <div className="bg-secondary-50 rounded-lg p-3 mb-4">
+                  <div className="bg-secondary-50 dark:bg-secondary-800/60 rounded-lg p-3 mb-4">
                     <div className="flex justify-between text-sm">
-                      <span className="text-secondary-600">Available Tokens</span>
+                      <span className="text-secondary-600 dark:text-secondary-400">
+                        Available Tokens
+                      </span>
                       <span className="font-medium">
-                        {property.tokenDetails.availableTokens.toLocaleString()} / {property.tokenDetails.totalTokens.toLocaleString()}
+                        {property.tokenDetails.availableTokens.toLocaleString()} /{' '}
+                        {property.tokenDetails.totalTokens.toLocaleString()}
                       </span>
                     </div>
                     <div className="flex justify-between text-sm mt-1">
-                      <span className="text-secondary-600">Token Price</span>
+                      <span className="text-secondary-600 dark:text-secondary-400">
+                        Token Price
+                      </span>
                       <span className="font-medium">{property.tokenDetails.tokenPrice}</span>
                     </div>
                   </div>
