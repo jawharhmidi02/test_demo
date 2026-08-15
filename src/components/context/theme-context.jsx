@@ -2,7 +2,7 @@ import { createContext, useState, useEffect, useCallback, useMemo, useContext } 
 
 const STORAGE_KEY = 'RENTVERSE_THEME';
 
-const ThemeConext = createContext();
+export const ThemeConext = createContext();
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
