@@ -28,6 +28,13 @@ function Home() {
 
   const { isConnected, isConnecting, connectWallet, shortAddress, balance } = useWallet();
 
+  const handleCtaConnect = () => {
+    if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    connectWallet();
+  };
+
   const featuredProperties = [
     {
       id: 1,
@@ -493,7 +500,7 @@ function Home() {
             ) : (
               <button
                 type="button"
-                onClick={connectWallet}
+                onClick={handleCtaConnect}
                 disabled={isConnecting}
                 className="btn bg-secondary-900/90 hover:bg-black text-white px-6 py-3 font-semibold  disabled:opacity-60 disabled:cursor-not-allowed"
               >
